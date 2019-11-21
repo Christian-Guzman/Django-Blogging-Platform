@@ -24,3 +24,9 @@ class SignUpForm(forms.ModelForm):
     def signup(self):
         self.cleaned_data.pop("repeat_password")
         return User.objects.create_user(**self.cleaned_data)
+
+
+class PostForm(forms.Form):
+    author = forms.CharField()
+    content = forms.CharField()
+    published = forms.DateTimeField()

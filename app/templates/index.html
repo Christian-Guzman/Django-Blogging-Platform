@@ -7,8 +7,11 @@
     <title>HOME</title>
 </head>
 <body>
+    <a href="{% url 'new_post' %}">CREATE</a>
     {% for post in posts %}
-    <p>{{post.content}}, {{post.author}}, {{post.published}} </p>
+    <p>{{post.content}}, {{post.author}} </p>
     {% endfor %}
+    {% block content %}
+    {% endblock content %}
 </body>
 </html>
