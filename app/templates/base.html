@@ -10,6 +10,10 @@
     <nav class="navbar navbar-expand navbar-light bg-light">
         <a class="navbar-brand" href="{% url 'home' %}">HOME</a>
         <ul class="navbar-nav">
+        <main class="container p-5">
+        {% block signup %}
+        {% endblock signup %}
+    </main>
             {% if user.is_authenticated %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'logout' %}">Logout</a>
@@ -24,10 +28,7 @@
             {% endif %}
         </ul>
         </nav>
-        <main class="container p-5">
-        {% block signup %}
-        {% endblock signup %}
-        </main>
+        
 
         <div> 
             {% block login %}
@@ -43,17 +44,15 @@
         <a class="nav-link" href="{% url 'new_post' %}">Create Post</a>
     </li>
     <p>All the Posts</p>
+    <ul>
     {% for post in posts %}
-    <p>---{{post.content}}---, ---{{post.author}}---, ---{{post.published}}---</p>
+    <li> {{post.author}}, {{post.content}}, {{post.published}} </li>
     {% endfor %}
+    </ul>
     {% endif %}
-
-    
 
     {% block content %}
     {% endblock content %}
 
-    {% block users_post %}
-    {% endblock users_post %}
 </body>
 </html>

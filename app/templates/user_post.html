@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
-{% block users_post %}
+{% block content %}
 <ul>
 {% for user in current_user  %}
-        
     <li>[{{ user.author }}], [{{ user.content }}], [{{ user.published}}]</li> 
 {% endfor %}
 </ul>
-{% endblock users_post %}
+{% endblock content %}
