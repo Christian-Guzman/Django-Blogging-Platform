@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HOME</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'home' %}">HOME</a>
+        <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'sign-up' %}">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            {% endif %}
+        </ul>
+        </nav>
+        <main class="container p-5">
+        {% block signup %}
+        {% endblock signup %}
+        </main>
+
+        <div> 
+            {% block login %}
+            {% endblock login %}
+        </div>
+    
+    {% if user.is_authenticated %}
+    <p>Hello {{ user.username }}</p>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'user_post' %}">Your post</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'new_post' %}">Create Post</a>
+    </li>
+    <p>All the Posts</p>
+    {% for post in posts %}
+    <p>---{{post.content}}---, ---{{post.author}}---, ---{{post.published}}---</p>
+    {% endfor %}
+    {% endif %}
+
+    
+
+    {% block content %}
+    {% endblock content %}
+
+    {% block users_post %}
+    {% endblock users_post %}
+</body>
+</html>

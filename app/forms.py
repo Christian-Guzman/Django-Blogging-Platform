@@ -27,6 +27,5 @@ class SignUpForm(forms.ModelForm):
 
 
 class PostForm(forms.Form):
-    author = forms.CharField()
     content = forms.CharField()
     published = forms.DateTimeField()
